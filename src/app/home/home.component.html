@@ -1,0 +1,58 @@
+<!-- formulaire pour saisir un nom de film -->
+
+<div class="row">
+  
+  <div class="col-sm-8 col-sm-offset-2">
+    <br><br><br><h2>Voici votre liste de films ! Utilisez la barre de recherche ci-dessous pour en ajouter d'autres.</h2><br>
+
+    <form (ngSubmit)="addMovie(f)" #f="ngForm">
+
+      <div class="form-group">
+        <label for="movieName">
+          Nom du film :
+        </label>
+        <input type="text" id="movieName" class="form-control" name="movieName" ngModel required>
+      </div>
+
+      <button type="submit" class="btn_add_movie">Ajouter</button>
+      <p class="error">{{errorMsgMovie}}</p>
+
+    </form>
+
+  </div>
+</div>
+
+
+<!-- liste des films favoris -->
+
+<br><br><h2>Liste des films :</h2><br> 
+<table class="table" id='tab'> 
+  <div class="container">
+
+    <div class="row" *ngFor="let movie of movies; let i = index">
+      <h4>Titre : {{movie.Title}}</h4>
+
+      <!-- template pour modale, ne s'ouvre qu'avec click sur le bouton "Details" -->
+
+      <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Informations :</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="{{movie.Poster}}" style="margin-left: 80px;"><br><br>
+          <p>Titre : {{movie.Title}}</p>
+          <p>Année : {{movie.Year}}</p>
+          <p>Type : {{movie.Type}}</p>
+        </div>
+      </ng-template>
+
+      <button class="btn-success add_fav" (click)="addFavoris(i)">Ajouter aux favoris</button>
+      <button class="btn-danger remove_list" (click)="removeMovie(i)">Supprimer</button>
+      <button class="btn_show_details" (click)="open(content)">Détails</button>
+    </div>
+  </div>
+</table>     
+

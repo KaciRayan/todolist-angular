@@ -1,0 +1,21 @@
+.error {
+    color: red;
+    font-size: larger;
+  }
+
+/* position des boutons */
+
+.add_fav {
+    position:fixed;
+    right: 250px;
+}
+
+.remove_list {
+    position:fixed;
+    right: 150px;
+}
+
+.btn_show_details {
+    position:fixed;
+    right: 410px;
+}

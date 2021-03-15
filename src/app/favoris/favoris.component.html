@@ -1,0 +1,40 @@
+<div class="container">
+
+    <br><br><br><h3>Voici la liste de vos films favoris ! Vous pouvez consulter leurs informations ou les supprimer de votre liste de favoris ici.</h3>
+
+</div>
+
+
+<!-- liste des films favoris -->
+
+<br><br><h2>Liste des films favoris :</h2><br> 
+<table class="table" id='tab' *ngFor="let movie of favMovies; let i = index"> 
+
+  <div class="row">
+    <h4>Titre : {{movie.Title}}</h4>
+
+
+    <!-- template pour modale, ne s'ouvre qu'avec click sur le bouton "Details" -->
+
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Informations :</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="{{movie.Poster}}" style="margin-left: 80px;"><br><br>
+        <p>Titre : {{movie.Title}}</p>
+        <p>Année : {{movie.Year}}</p>
+        <p>Type : {{movie.Type}}</p>
+      </div>
+    </ng-template>
+
+    <button class="btn-danger remove_list" (click)="removeMovieFav(i)">Retirer</button>
+    <button class="btn_show_details" (click)="open(content)">Détails</button>
+  </div>
+
+</table>        
+
+
