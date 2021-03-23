@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class MovieSearch {
 
-    URL: String = "http://www.omdbapi.com/?i=tt3896198&apikey=be42279e";
+    readonly apikey = 'be42279e';
+    readonly URL = `https://www.omdbapi.com/`;
 
     constructor(private http: HttpClient) { }
 
     findMovie(movieName: String): Observable<any> {
-        return this.http.get(`${this.URL}&s=${movieName}*`);
+        return this.http.get(`${this.URL}?s=${movieName}&apikey=${this.apikey}`);
     }
 }
